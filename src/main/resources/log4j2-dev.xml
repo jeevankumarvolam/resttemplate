@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="FATAL" monitorInterval="30">
+    <Properties>
+<!--        <Property name="LOG_PATTERN">%p %m%n</Property>-->
+        <Property name="APP_LOG_ROOT">D:/log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        
+    </Appenders>
+    <Loggers>
+ 
+        <Logger name="com.example.lastdemo" level="info" additivity="false">
+            <AppenderRef ref="appLog" />
+            <AppenderRef ref="Console" />
+        </Logger>
+ 
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
