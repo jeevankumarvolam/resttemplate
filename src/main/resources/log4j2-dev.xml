@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="FATAL" monitorInterval="30">
     <Properties>
-<!--        <Property name="LOG_PATTERN">%p %m%n</Property>-->
+        <!--        <Property name="LOG_PATTERN">%p %m%n</Property>-->
         <Property name="APP_LOG_ROOT">D:/log</Property>
     </Properties>
     <Appenders>

@@ -19,39 +19,41 @@ public class Custom implements ExclusionStrategy {
     public boolean shouldSkipField(FieldAttributes fa) {
         try {
             //        NotRequiredForClient notRequiredForClient=getClass()
-            
-            if(fa.getDeclaredClass().getField(fa.getName()).isAnnotationPresent(NotRequiredForClient.class)){
-               
+
+            if (fa.getDeclaredClass().getField(fa.getName()).isAnnotationPresent(NotRequiredForClient.class)) {
+
                 System.out.println(fa.getName());
-                
+
                 return true;
-            }       } catch (NoSuchFieldException ex) {
+            }
+        } catch (NoSuchFieldException ex) {
             Logger.getLogger(Custom.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
             Logger.getLogger(Custom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         System.out.println("in skip field");
-return false;
+        return false;
 
     }
 
     @Override
     public boolean shouldSkipClass(Class<?> type) {
         try {
-            if(type.getField(type.getName()).isAnnotationPresent(NotRequiredForClient.class)){
-                
-                                System.out.println(type.getName());
+            if (type.getField(type.getName()).isAnnotationPresent(NotRequiredForClient.class)) {
+
+                System.out.println(type.getName());
 
                 return true;
-            }       } catch (NoSuchFieldException ex) {
+            }
+        } catch (NoSuchFieldException ex) {
             Logger.getLogger(Custom.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
             Logger.getLogger(Custom.class.getName()).log(Level.SEVERE, null, ex);
         }
-System.out.println("in skip class");
+        System.out.println("in skip class");
         return false;
 
     }
 
-   }
+}

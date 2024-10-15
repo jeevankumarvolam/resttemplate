@@ -4,6 +4,9 @@
  */
 package com.example.lastdemo;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import java.nio.charset.Charset;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -27,14 +30,12 @@ import org.springframework.web.client.RestTemplate;
 public class Service {
 
     private static final Logger logger = LogManager.getLogger();
-     List<String> players=new ArrayList<>();
-
+    List<String> players = new ArrayList<>();
 
     private Random random = new Random();
-    
+
     @Autowired
     private RestTemplate restTemplate;
-    
 
     private HashMap<String, TurnTimer> turnTimers = new HashMap<>();
 
@@ -44,9 +45,82 @@ public class Service {
     int four;
     int five;
     int six;
+    
+    public <T> List<?>  checkGenerics(List<T> list,T element){
+    list.add(element);
+    return list;
+    } 
+    
+    
+
+    Cache<String, String> cacheMap = CacheBuilder.newBuilder().build();
+
+    HashMap<String, String> concurrentHashMap = new HashMap<String, String>() {
+        {
+            put("key", "value");
+
+        }
+    };
+
+    HashMap<String, String> newMap = new HashMap<String, String>() {
+        {
+            put("key", "value");
+
+        }
+    };
+
+    public void accessConcurrentMap() {
+        byte[] array = new byte[7]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
+        concurrentHashMap.put(generatedString, "dummyValue");
+
+        String key = "key";
+        if (concurrentHashMap.get(key) != null) {
+            String value = concurrentHashMap.get("key");
+            concurrentHashMap.remove(generatedString);
+            //   System.out.println("value is present in map");
+
+        } else {
+
+            System.out.println("value is not present in map in service method");
+        }
+
+    }
+
+    public Object throwsNullObject() {
+
+        throw new NullPointerException();
+    }
+
+    public String throwsString() {
+        throw new NullPointerException();
+
+    }
+
+    public int throwsmehtod() {
+
+        throw new NullPointerException();
+    }
+
+    public void accessMap() {
+        byte[] array = new byte[7]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
+        newMap.put(generatedString, "dummyValue");
+
+        if (newMap.containsKey("key")) {
+            String value = newMap.get("key");
+            // System.out.println("value is present in map");
+
+        } else {
+
+            System.out.println("value is not present in map");
+        }
+
+    }
 
 //    private static final DiceHandler diceHandler = new DiceHandler("SIX_DICE_NUMBERS");
-
 //    public String testMethod() {
 //
 //        for (int i = 0; i < 100; i++) {
@@ -89,7 +163,6 @@ public class Service {
 //        return "success";
 //
 //    }
-
     public HashMap<String, TurnTimer> getTurnTimers() {
         return turnTimers;
     }
@@ -98,18 +171,17 @@ public class Service {
         this.turnTimers = turnTimers;
     }
 
-    public Service(){
-    
-    
-     players.add("pavan");
-    
+    public Service() {
+
+        players.add("pavan");
+
     }
-    
-    public void removePlayers(){
-    players.clear();
-    
+
+    public void removePlayers() {
+        players.clear();
+
     }
-    
+
     public void generateGameId() {
 //        char startChar = 65;
 //        char endChar = 90;
@@ -151,40 +223,34 @@ public class Service {
 //        
     }
 
-    public void getMethod(){}
-    
-    
-    public void postMethod(){}
-    
-    
-    public void cpuFix() throws InterruptedException{
-    
-MutableBoolean   isAllTakeSeatSuccess=new MutableBoolean(false);
-
- 
-    loopMethod(isAllTakeSeatSuccess,players);
-    System.out.println("boolean value is"+isAllTakeSeatSuccess);
-    
-    
+    public void getMethod() {
     }
-    
-    
-public void loopMethod(MutableBoolean isAllTakeSeatSuccess,List<String> players) throws InterruptedException{
 
-if(players.isEmpty()){
-System.out.println("in players empty block");
-isAllTakeSeatSuccess.setTrue();
+    public void postMethod() {
+    }
 
-}else{
-Thread.sleep(10);
-System.out.println("in loop ");
+    public void cpuFix() throws InterruptedException {
 
-loopMethod(isAllTakeSeatSuccess,players);
-}
+        MutableBoolean isAllTakeSeatSuccess = new MutableBoolean(false);
 
+        loopMethod(isAllTakeSeatSuccess, players);
+        System.out.println("boolean value is" + isAllTakeSeatSuccess);
 
-}
+    }
 
+    public void loopMethod(MutableBoolean isAllTakeSeatSuccess, List<String> players) throws InterruptedException {
 
+        if (players.isEmpty()) {
+            System.out.println("in players empty block");
+            isAllTakeSeatSuccess.setTrue();
+
+        } else {
+            Thread.sleep(10);
+            System.out.println("in loop ");
+
+            loopMethod(isAllTakeSeatSuccess, players);
+        }
+
+    }
 
 }

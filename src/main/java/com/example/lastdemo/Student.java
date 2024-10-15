@@ -12,14 +12,13 @@ import com.google.gson.annotations.Expose;
  *
  * @author volam.kumar
  */
-
 @JsonInclude(Include.NON_EMPTY)
 public class Student {
-    
+
 //  int marks;
     @Expose
-    String name="jeevan studentt";
-    String section="A";
+    String name = "jeevan studentt";
+    String section = "A";
 
 //    public int getMarks() {
 //        return marks;
@@ -28,7 +27,6 @@ public class Student {
 //    public void setMarks(int marks) {
 //        this.marks = marks;
 //    }
-
     public String getName() {
         return name;
     }
@@ -44,5 +42,5 @@ public class Student {
     public void setSection(String section) {
         this.section = section;
     }
-    
+
 }

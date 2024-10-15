@@ -12,37 +12,33 @@ import org.springframework.stereotype.Component;
  *
  * @author volam.kumar
  */
-
 @Component
 @Scope("prototype")
-public class TurnTimer  extends Thread{
-    
-    private int turnTime=50;
-     @Override
+public class TurnTimer extends Thread {
+
+    private int turnTime = 50;
+
+    @Override
     public void run() {
-       boolean b=true;
-    int i=0;
-        while(b){
-        
-           try {
-               TimeUnit.SECONDS.sleep(1L);
-               System.out.println("the turn time is:"+turnTime);
-           } catch (InterruptedException ex) {
-               System.out.print(""+ex);
-Thread.interrupted();
-           }
-        System.out.println(i);
-        i++;
-        if(i==turnTime){
-        b=false;
+        boolean b = true;
+        int i = 0;
+        while (b) {
+
+            try {
+                TimeUnit.SECONDS.sleep(1L);
+                System.out.println("the turn time is:" + turnTime);
+            } catch (InterruptedException ex) {
+                System.out.print("" + ex);
+                Thread.interrupted();
+            }
+            System.out.println(i);
+            i++;
+            if (i == turnTime) {
+                b = false;
+            }
+
         }
-        
-        
-        
-        }
-    
-    
-    
+
     }
 
     public int getTurnTime() {
@@ -52,8 +48,5 @@ Thread.interrupted();
     public void setTurnTime(int turnTime) {
         this.turnTime = turnTime;
     }
-    
-    
-    
-    
+
 }

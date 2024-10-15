@@ -13,15 +13,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Joi.string().required(), game_type: Joi.string().required(), app_id:
  * Joi.number().required()
  */
-public class VerifyUser  {
+public class VerifyUser {
+
     @Override
     public String toString() {
-        return "VerifyUser{" +
-                "user_id='" + user_id + '\'' +
-                ", game_id='" + game_id + '\'' +
-                ", app_id=" + app_id +
-                ", game_type='" + game_type + '\'' +
-                '}';
+        return "VerifyUser{"
+                + "user_id='" + user_id + '\''
+                + ", game_id='" + game_id + '\''
+                + ", app_id=" + app_id
+                + ", game_type='" + game_type + '\''
+                + '}';
     }
 
     public String getUser_id() {
@@ -57,16 +58,15 @@ public class VerifyUser  {
     }
 
     @JsonProperty("user_id")
-    private String user_id="hadsbuad";
+    private String user_id = "hadsbuad";
 
     @JsonProperty("game_id")
-    private String game_id="qwetr123";
-   
-    @JsonProperty("app_id")
-    private int app_id=126;
-    
-    @JsonProperty("game_type")
-    private String game_type="carrom";
+    private String game_id = "qwetr123";
 
+    @JsonProperty("app_id")
+    private int app_id = 126;
+
+    @JsonProperty("game_type")
+    private String game_type = "carrom";
 
 }

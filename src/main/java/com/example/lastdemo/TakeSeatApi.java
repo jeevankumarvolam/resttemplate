@@ -15,20 +15,20 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 
-public class TakeSeatApi implements Callable<Boolean>{
+public class TakeSeatApi implements Callable<Boolean> {
+
     boolean loop;
 
     @Override
     public Boolean call() throws Exception {
-         loop=true;
-        while(loop){
-        
-        System.out.println("in loop");
+        loop = true;
+        while (loop) {
+
+            System.out.println("in loop");
         }
-        
+
         return loop;
-        
-        
+
     }
 
     public boolean isLoop() {
@@ -38,5 +38,5 @@ public class TakeSeatApi implements Callable<Boolean>{
     public void setLoop(boolean loop) {
         this.loop = loop;
     }
-    
+
 }

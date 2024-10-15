@@ -4,14 +4,10 @@
  */
 package com.example.lastdemo;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.springframework.classify.Classifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,12 +34,12 @@ public class RetryConfig {
     private final NeverRetryPolicy neverRetryPolicy = new NeverRetryPolicy();
 
     @Bean
-    public PoolingHttpClientConnectionManager customizedPoolingHtppClientConnectionManager(){
-      /*
+    public PoolingHttpClientConnectionManager customizedPoolingHtppClientConnectionManager() {
+        /*
         Setting the connection caching time to 5 minutes, so that the connection is in an open state for 5 mins.
         This will add some extra time as every 5 mins SSL handshake will happen. However, software is all about trade-off,
         and here we are making sure, we don't keep calling cached API DNS
-      */
+         */
         PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager(5, TimeUnit.MINUTES);
         connManager.setMaxTotal(10);    // Set maximum total connections
         connManager.setDefaultMaxPerRoute(20);     // Set maximum connections per route
@@ -60,7 +56,7 @@ public class RetryConfig {
 
         HttpClientBuilder clientBuilder = HttpClientBuilder.create()
                 .setConnectionManager(customizedPoolingHtppClientConnectionManager())
-                .setConnectionManagerShared(true)  //this is important to set as true in case of more than one downstream APIs as we want to set a common HTTP connection pool
+                .setConnectionManagerShared(true) //this is important to set as true in case of more than one downstream APIs as we want to set a common HTTP connection pool
                 .setDefaultRequestConfig(reqConfig);
 
         HttpComponentsClientHttpRequestFactory reqFactor = new HttpComponentsClientHttpRequestFactory();
@@ -68,9 +64,6 @@ public class RetryConfig {
 
         return new RestTemplate(reqFactor);
     }
-
-
-
 
     @Bean
     public RetryTemplate retryTemplate() {
@@ -104,8 +97,5 @@ public class RetryConfig {
                 return neverRetryPolicy;
         }
     }
-    
-    
 
-    
 }
