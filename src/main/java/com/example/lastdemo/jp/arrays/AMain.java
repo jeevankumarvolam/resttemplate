@@ -4,14 +4,20 @@
  */
 package com.example.lastdemo.jp.arrays;
 
+import jnr.ffi.annotations.In;
+
+import java.util.Stack;
+
+
+
 /**
- *
  * @author volam.kumar
  */
 public class AMain {
-    public static void main(String[] args){
-    
-        System.out.println("main method");
+    public static void main(String[] args) {
+        Integer min=null;
+      int a=  (int )min;
+
     }
-    
+
 }

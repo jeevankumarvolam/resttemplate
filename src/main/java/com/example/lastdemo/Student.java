@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.google.gson.annotations.Expose;
 
+import java.util.Objects;
+
 /**
  *
  * @author volam.kumar
@@ -15,7 +17,17 @@ import com.google.gson.annotations.Expose;
 @JsonInclude(Include.NON_EMPTY)
 public class Student {
 
-//  int marks;
+    @Override
+    public boolean equals(Object o) {
+      return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return 23;
+    }
+
+    //  int marks;
     @Expose
     String name = "jeevan studentt";
     String section = "A";
@@ -29,6 +41,14 @@ public class Student {
 //    }
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", section='" + section + '\'' +
+                '}';
     }
 
     public void setName(String name) {

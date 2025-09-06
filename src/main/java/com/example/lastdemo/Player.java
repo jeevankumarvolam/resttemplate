@@ -3,10 +3,33 @@ package com.example.lastdemo;
 import com.google.gson.annotations.Expose;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 @Scope("request")
 
 @Component
 public class Player {
+private int count=0;
+    private final Lock lock = new ReentrantLock(); // Create a lock instance
+
+    public void increment() throws InterruptedException {
+       // lock.lock();
+        lock.newCondition();
+        lock.tryLock(3, TimeUnit.MICROSECONDS);
+        // Explicitly acquire the lock
+        try {
+            count++;
+        } finally {
+            lock.unlock(); // Always release the lock in a 'finally' block
+        }
+    }
+
+    public int getCount() {
+        return count;
+    }
 
     @Expose
     int score = 10;
