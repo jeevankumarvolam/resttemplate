@@ -3,13 +3,21 @@ package com.example.lastdemo.designpatterns.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
+public abstract class Product implements Cloneable {
+
+
+
+
+    private Cache cache;
+    private SubscribeService subscribeService;
+
 
     private int stockLevel;
 
     private List<StockLevelObserver> observerList = new ArrayList<>();
     private String productName;
 
+    public abstract int getAbstractMethod();
     public int getStockLevel() {
         return stockLevel;
     }
